@@ -6,6 +6,7 @@
 char* gets(char* str);
 
 void win() {
+    printf("Debug: win function started\n");
     char flag[100];
     FILE *fp = fopen("flag.txt", "r");
     if (fp == NULL) {
