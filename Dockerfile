@@ -15,6 +15,9 @@ COPY ./flag.txt /flag.txt
 # Compile the challenge
 RUN gcc -fno-stack-protector -z execstack -no-pie /leaky_vault.c -o /leaky_vault
 
+# Set permissions for the flag file (optional but recommended)
+RUN chmod 644 /flag.txt
+
 # Expose the port you want to listen on (use 1337 or any other port)
 EXPOSE 1337
 
