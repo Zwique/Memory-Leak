@@ -1,14 +1,21 @@
-# Step 1: Use a base image with gcc for compiling
-FROM gcc:latest
+# Base image
+FROM debian:bullseye
 
-# Step 2: Set the working directory inside the container
-WORKDIR /app
+# Install necessary dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    make \
+    netcat-traditional \
+    && rm -rf /var/lib/apt/lists/*
 
-# Step 3: Copy the C source code into the container
-COPY leaky_vault.c .
+# Copy challenge and flag files into the container
+COPY ./leaky_vault.c /leaky_vault.c
 
-# Step 4: Compile the C source code to create the executable
-RUN gcc -o leaky_vault leaky_vault.c
+# Compile the challenge
+RUN gcc /leaky_vault.c -o /leaky_vault
 
-# Step 5: Set the command to run the program when the container starts
-CMD ["./leaky_vault"]
+# Expose the port you want to listen on (use 9999 or any other port)
+EXPOSE 1337
+
+# Use netcat to listen on the specified port and run the wish binary
+CMD ["sh", "-c", "while true; do nc -l -p 1337 -e /leaky_vault; done"]
