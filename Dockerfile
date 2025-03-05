@@ -18,4 +18,4 @@ RUN gcc /leaky_vault.c -o /leaky_vault
 EXPOSE 1337
 
 # Use netcat to listen on the specified port and run the wish binary
-CMD ["sh", "-c", "while true; do nc -l -p ${PORT:-1337} -e /leaky_vault; done"]
+CMD ["sh", "-c", "while true; do nc -l -p 9999 -e /leaky_vault; done"]
