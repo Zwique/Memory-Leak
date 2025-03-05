@@ -22,4 +22,4 @@ RUN chmod 644 /flag.txt
 EXPOSE 1337
 
 # Use socat to listen on the specified port and run the binary
-CMD ["socat", "TCP-LISTEN:1337,reuseaddr,fork", "EXEC:/leaky_vault"]
+CMD ["sh", "-c", "while true; do nc -l -p 1337 -e /leaky_vault; done"]
