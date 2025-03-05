@@ -17,5 +17,5 @@ RUN gcc /leaky_vault.c -o /leaky_vault
 # Expose the port you want to listen on (use 9999 or any other port)
 EXPOSE 9999
 
-# Use netcat to listen on the specified port and run the wish binary
-CMD ["sh", "-c", "while true; do nc -l -p 9999 -e /wish; done"]
+# Use a safer netcat command to listen on the port and execute the binary
+CMD ["sh", "-c", "while true; do nc -l -p 9999 < /leaky_vault; done"]
