@@ -3,7 +3,7 @@ FROM debian:bullseye
 
 # Install necessary dependencies
 RUN apt-get update && apt-get install -y \
-    gcc \
+    gcc-aarch64-linux-gnu \  # Cross-compiler for ARM64
     make \
     socat \
     && rm -rf /var/lib/apt/lists/*
@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
 COPY ./leaky_vault.c /leaky_vault.c
 COPY ./flag.txt /flag.txt
 
-# Compile the challenge
-RUN gcc -fno-stack-protector -z execstack -no-pie /leaky_vault.c -o /leaky_vault
+# Compile the challenge for ARM64
+RUN aarch64-linux-gnu-gcc -fno-stack-protector -z execstack -no-pie /leaky_vault.c -o /leaky_vault
 
 # Set permissions for the flag file (optional but recommended)
 RUN chmod 644 /flag.txt
