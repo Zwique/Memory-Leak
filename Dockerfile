@@ -18,5 +18,5 @@ RUN gcc -fno-stack-protector -z execstack -no-pie /leaky_vault.c -o /leaky_vault
 # Expose the port you want to listen on (use 1337 or any other port)
 EXPOSE 1337
 
-# Use netcat to listen on the specified port and run the wish binary
-CMD ["sh", "-c", "while true; do nc -l -p 1337 -e /leaky_vault; done"]
+# Use socat to listen on the specified port and run the binary
+CMD ["socat", "TCP-LISTEN:1337,reuseaddr,fork", "EXEC:/leaky_vault"]
