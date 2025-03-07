@@ -13,7 +13,7 @@ COPY ./leaky_vault.c /leaky_vault.c
 COPY ./flag.txt /flag.txt
 
 # Compile the challenge
-RUN gcc -fno-stack-protector -z execstack -o leaky_vault leaky_vault.c
+RUN gcc leaky_vault.c -fno-stack-protector -no-pie -o leaky_vault
 
 # Expose the port you want to listen on (use 1337 or any other port)
 EXPOSE 1337
