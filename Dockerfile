@@ -2,11 +2,7 @@
 FROM debian:bullseye
 
 # Install necessary dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    make \
-    socat \
-    && rm -rf /var/lib/apt/lists/*
+
 
 # Copy challenge and flag files into the container
 COPY ./leaky_vault.c /leaky_vault.c
