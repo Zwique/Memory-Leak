@@ -1,4 +1,4 @@
-Leak-Vault Writeup
+# Leak-Vault Writeup
 
 This binary challenge requires executing the win function by leveraging a buffer overflow vulnerability and using the function's address.
 Steps to Solve
@@ -14,7 +14,7 @@ Copy
 000000000040084c <win>:
   400874:       540000c1        b.ne    40088c <win+0x40>  // b.any
 ```
-The address of the win function is 0x40084c.
+## The address of the win function is 0x40084c.
 2. Exploit the Buffer Overflow
 
 The binary appears to have a buffer overflow vulnerability. By providing an input longer than the buffer size, we can overwrite the return address on the stack with the address of the win function.
@@ -40,7 +40,7 @@ Copy
 Enter your input: You entered: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA@
 uacCTF{m3m9ry_l2ak_3xpl0it_CS1410}
 
-The flag is: uacCTF{m3m9ry_l2ak_3xpl0it_CS1410}.
+#### The flag is: uacCTF{m3m9ry_l2ak_3xpl0it_CS1410}.
 
 Alternative: Using an Exploit Script
 ```
