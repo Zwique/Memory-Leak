@@ -1,4 +1,4 @@
-# Leak-Vault Writeup
+# Memory-Leak Writeup
 
 This binary challenge requires executing the win function by leveraging a buffer overflow vulnerability and using the function's address.
 Steps to Solve
